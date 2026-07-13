@@ -7,7 +7,10 @@ import dev.jay739.wakeharder.ring.RingService
 
 class AlarmReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
-        val serviceIntent = Intent(context, RingService::class.java)
+        val alarmId = AlarmScheduler.alarmIdFromIntent(intent)
+        val serviceIntent = Intent(context, RingService::class.java).apply {
+            putExtra(RingService.EXTRA_ALARM_ID, alarmId)
+        }
         context.startForegroundService(serviceIntent)
     }
 }

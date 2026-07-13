@@ -14,11 +14,12 @@ class RingService : Service() {
     override fun onBind(intent: Intent?): IBinder? = null
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        startForeground(NOTIFICATION_ID, buildNotification())
+        val alarmId = intent?.getLongExtra(EXTRA_ALARM_ID, -1) ?: -1
+        startForeground(NOTIFICATION_ID, buildNotification(alarmId))
         return START_STICKY
     }
 
-    private fun buildNotification(): android.app.Notification {
+    private fun buildNotification(alarmId: Long): android.app.Notification {
         val manager = getSystemService(NotificationManager::class.java)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
@@ -29,9 +30,12 @@ class RingService : Service() {
             manager.createNotificationChannel(channel)
         }
 
-        val fullScreenIntent = Intent(this, RingActivity::class.java)
+        val fullScreenIntent = Intent(this, RingActivity::class.java).apply {
+            putExtra(EXTRA_ALARM_ID, alarmId)
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        }
         val fullScreenPendingIntent = PendingIntent.getActivity(
-            this, 0, fullScreenIntent,
+            this, alarmId.toInt(), fullScreenIntent,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
@@ -46,6 +50,7 @@ class RingService : Service() {
     }
 
     companion object {
+        const val EXTRA_ALARM_ID = "alarm_id"
         private const val CHANNEL_ID = "alarm_channel"
         private const val NOTIFICATION_ID = 1
     }
