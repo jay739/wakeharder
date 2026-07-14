@@ -43,9 +43,12 @@ object AlarmScheduler {
         )
     }
 
-    private fun nextTriggerMillis(hour: Int, minute: Int): Long {
-        val now = Calendar.getInstance()
-        val trigger = Calendar.getInstance().apply {
+    internal fun nextTriggerMillis(
+        hour: Int,
+        minute: Int,
+        now: Calendar = Calendar.getInstance(),
+    ): Long {
+        val trigger = (now.clone() as Calendar).apply {
             set(Calendar.HOUR_OF_DAY, hour)
             set(Calendar.MINUTE, minute)
             set(Calendar.SECOND, 0)
