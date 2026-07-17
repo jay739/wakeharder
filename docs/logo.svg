@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect x="0" y="0" width="512" height="512" rx="123" ry="123" fill="#0B0D10"/>
+  <g id="icon">
+    <!-- Bell body: solid flat silhouette, dome + flared base, with an asymmetric
+         diagonal notch bitten out of the upper-right shoulder to read as
+         "broken / won't silence cleanly" rather than a generic notification bell. -->
+    <path d="
+      M256 96
+      C 330 96 388 156 388 232
+      L 388 268
+      C 388 300 400 322 418 340
+      C 428 350 424 366 410 368
+      L 102 368
+      C 88 366 84 350 94 340
+      C 112 322 124 300 124 268
+      L 124 232
+      C 124 175 164 129 218 111
+      L 300 150
+      L 344 176
+      L 300 118
+      Z"
+      fill="#FF5A36"/>
+
+    <!-- Bell base bar (the strike bar under the bell body) -->
+    <rect x="150" y="380" width="212" height="34" rx="17" fill="#FF5A36"/>
+
+    <!-- Small off-white accent: a scan-target dot on the bell, reads as the
+         barcode/QR "proof of task" marker at small sizes as a bright ping -->
+    <rect x="234" y="216" width="44" height="44" rx="8" fill="#F2F0EA"/>
+  </g>
+</svg>
