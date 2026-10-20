@@ -1,5 +1,9 @@
 # wakeharder
 
+<p align="center">
+  <img src="docs/logo.svg" alt="wakeharder logo" width="128" />
+</p>
+
 Open-source Android alarm app: the alarm only disarms after you complete a task, either solving a math problem or scanning a pre-registered barcode/QR code.
 
 Built with Kotlin and Jetpack Compose. minSdk 29 (Android 10+). No ads, no account, no network use.
